@@ -5,8 +5,90 @@
 
 $title = "##############-------------AZ1 PROJEKT ZALICZENIOWY POWERSHELL-------------##############"
 $author = "##############-------------MICHAL WASIK 18852 IZ07TC1-------------##############"
+$indexNumber = "18852"
 
+function createUser {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]$global:Name,
+        [Parameter(Mandatory = $true)]
+        [string]$global:Surname,
+        [Parameter(Mandatory = $true)]
+        [string]$Department
+    )
 
+    # Pobieranie nazwy domeny z urządzenia
+    $computer = Get-WmiObject -Class Win32_ComputerSystem
+    $domain = $computer.Domain
+
+    # Generowanie loginu na podstawie imienia i nazwiska
+    $login = $Name + "." + $Surname
+    # Sprawdzenie, czy login już istnieje jeśli tak, doda do niego cyfrę
+    $i = 1
+    try {
+        while (Get-ADUser $login) {
+            $login = $Name + "." + $Surname + $i
+            $adName = "$($Name) $($Surname) $($i)"
+            $i++
+        }
+    }
+    catch {}
+
+    # Generowanie adresu e-mail na podstawie imienia, nazwiska i domeny
+    $email = "$login@$domain"
+
+    # Generowanie hasła
+    $password = '' 
+
+    1..12 | ForEach-Object { 
+
+        $password += [char](Get-Random -Minimum 48 -Maximum 122) 
+    }
+    # Tworzenie konta użytkownika
+    New-ADUser -Name $adName -SamAccountName $login -UserPrincipalName "$login@$domain" -Department $Department -Email $email -AccountPassword (ConvertTo-SecureString $password -AsPlainText -Force) -Enabled $true
+
+    # Zapisywanie informacji o loginie i haśle do pliku CSV
+    $data = [pscustomobject]@{
+        "Name"     = $Name
+        "Surname"  = $Surname
+        "Login"    = $login
+        "Password" = $password
+        "Email"    = $email
+    }
+    $dataFilePath = "C:\Logi\$($indexNumber)_$($Name)_$($Surname).csv"
+    # Sprawdzanie czy dana ścieżka istnieje, jeśli nie, utworzy ją
+    if (-not (Test-Path $dataFilePath)) {
+        $null = New-Item -ItemType File -Path $dataFilePath -Force
+    }
+    $data | Export-Csv $dataFilePath -NoTypeInformation 
+
+    # Dodawanie wpisu do dziennika
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    $entry = [pscustomobject]@{
+        "Timestamp" = $timestamp
+        "User"      = $env:USERNAME
+        "Action"    = "Created user $Name $Surname with login $login and password $password"
+    }
+    $entryFilePath = "C:\Logi\$($indexNumber)_create_user.csv"
+
+    # Sprawdzanie czy dana ścieżka istnieje, jeśli nie, utworzy ją
+    if (-not (Test-Path $entryFilePath)) {
+        $null = New-Item -ItemType File -Path $entryFilePath -Force
+    }
+    $entry | Export-Csv $entryFilePath -Append -NoTypeInformation 
+}
+############----MENU----############
+function createUserTest {
+    try {
+        createUser
+        Write-Host "Pomyślnie utworzono użytkownika $($Name) $($Surname)"
+        break outer
+    }
+    catch {
+        Write-Host "Wystąpił błąd podczas wykonywania funkcji."
+    }
+}
 function showMainMenu {
     param (
         [string]$Title = 'MENU GŁÓWNE'
@@ -69,6 +151,7 @@ function showUserMenuCases {
         showUserMenu
         $selection = Read-Host "Twój wybór"
         switch ($selection) {
+            '1' { createUser }
             'b' { showMainMenu } 
             'q' { break outer }
         }
