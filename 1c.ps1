@@ -13,7 +13,7 @@ function disableAccount {
 
 
 
-    $plik = "C:\Logi\$($indexNumber)_wyłączone_konta_$($timestamp).txt"
+    $plik = "C:\Logi\$($indexNumber)_wylączone_konta_$($timestamp).txt"
     # Sprawdzanie czy dana ścieżka istnieje, jeśli nie, utworzy ją
     if (-not (Test-Path $plik)) {
         $null = New-Item -ItemType File -Path $plik -Force
