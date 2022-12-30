@@ -28,4 +28,5 @@ function generateGroupReport {
             }
         }
     }
+    Write-Output "Lista grup z członkami została pomyślnie utworzona."
 }

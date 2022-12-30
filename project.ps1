@@ -39,7 +39,7 @@ function createUser {
     # Generowanie hasła
     $password = -join ((48..57) + (65..90) + (97..122) | Get-Random -Count 16 | % { [char]$_ })
     # Tworzenie konta użytkownika
-    New-ADUser -Name $($adName) -SamAccountName $login -UserPrincipalName "$login@$domain" -Department $Department -Email $email -AccountPassword (ConvertTo-SecureString $password -AsPlainText -Force) -Enabled $true
+    New-ADUser -GivenName $Name -Surname $Surname -Name $($adName) -SamAccountName $login -UserPrincipalName "$login@$domain" -Department $Department -Email $email -AccountPassword (ConvertTo-SecureString $password -AsPlainText -Force) -Enabled $true
 
     # Zapisywanie informacji o loginie i haśle do pliku CSV
     $data = [pscustomobject]@{
@@ -331,6 +331,77 @@ function generateGroupReport {
     Write-Output "Lista grup z członkami została pomyślnie utworzona."
 }
 
+function generateDisabledAccountReport {
+    # Pobierz wszystkie wyłączone konta z AD
+    $disabledAccounts = Get-ADUser -Filter { Enabled -eq $false } -Properties Name, DistinguishedName, SID, modifyTimeStamp
+
+    # Stwórz plik o nazwie "numer indeksu wyłączone konta.csv"
+    $filePath = "C:\Logi\$($indexNumber)_wylaczone_konta.csv"
+    $null = New-Item -ItemType File -Path $filePath -Force
+
+    # Dodaj nagłówki do pliku CSV
+    Add-Content -Path $filePath -Value "Nazwa konta,DistinguishedName,SID,Data ostatniej modyfikacji"
+
+    # Jeśli są jakieś wyłączone konta:
+    if ($disabledAccounts) {
+       
+        # Dla każdego wyłączonego konta:
+        foreach ($account in $disabledAccounts) {
+            # Pobierz dane konta
+            $userName = $account.Name
+            $distinguishedName = $account.DistinguishedName
+            $sid = $account.SID
+            $lastModified = $account.modifyTimeStamp
+
+            # Dodaj dane do pliku CSV
+            Add-Content -Path $filePath -Value "$userName,$distinguishedName,$sid,$lastModified"
+        }
+    }
+    Write-Output "Lista wyłączonych użytkowników została pomyślnie utworzona."
+}
+
+function generateUsersAccountReport {
+    # Pobierz wszystkich użytkowników z AD
+    $users = Get-ADUser -Filter * -Properties GivenName, Surname, UserPrincipalName, SamAccountName, DistinguishedName, whenCreated, modifyTimeStamp, LastLogonDate, PasswordLastSet
+
+    # Stwórz plik o nazwie "numer indeksu użytkownicy.csv"
+    $filePath = "C:\Logi\$($indexNumber)_uzytkownicy.csv"
+    $null = New-Item -ItemType File -Path $filePath -Force
+    # Jeśli są jacyś użytkownicy:
+    if ($users) {
+
+        # Dla każdego użytkownika:
+        foreach ($user in $users) {
+            # Pobierz dane użytkownika
+            $firstName = $user.GivenName
+            $lastName = $user.Surname
+            $login = $user.UserPrincipalName
+            $samAccount = $user.SamAccountName
+            $location = $user.DistinguishedName
+            $created = $user.whenCreated
+            $lastModified = $user.modifyTimeStamp
+            $lastLogon = $user.lastLogonDate
+            $pwdLastSet = $user.PasswordLastSet
+            # Dodaj dane do pliku CSV
+
+            $entry = [pscustomobject]@{
+                "Imie"                                  = $firstName
+                "Nazwisko"                              = $lastName
+                "Login (UPN)"                           = $login
+                "Samaccount"                            = $samAccount
+                "Lokalizacja"                           = $location
+                "Data utworzenia"                       = $created
+                "Data ostatniej modyfikacji"            = $lastModified
+                "Data ostatniego logowania"             = $lastLogon
+                "Data ostatniej zmiany hasla na koncie" = $pwdLastSet
+            }
+            # Dodanie usera do csv
+            $entry | Export-Csv $filePath -Append -NoTypeInformation 
+        }
+    }
+    Write-Output "Lista kont użytkowników została pomyślnie utworzona."
+}
+
 function createUserTest {
     try {
         createUser
@@ -462,6 +533,8 @@ function showRaportMenuCases {
         $selection = Read-Host "Twój wybór"
         switch ($selection) {
             '1' { generateGroupReport }
+            '2' { generateDisabledAccountReport }
+            '3' { generateUsersAccountReport }
             'b' { return showMainMenu } 
             'q' { break outer }
         }
