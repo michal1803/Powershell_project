@@ -264,16 +264,17 @@ function addUserToGroup {
         [Parameter(Mandatory = $true)]
         [string]$userName
     )
-try{
-    # Pobierz obiekt użytkownika z AD
-    $user = Get-ADUser -Identity $userName -ErrorAction SilentlyContinue
+    try {
+        # Pobierz obiekt użytkownika z AD
+        $user = Get-ADUser -Identity $userName -ErrorAction SilentlyContinue
 
-    # Pobierz obiekt grupy z AD
-    $group = Get-ADGroup -Identity $groupName -ErrorAction SilentlyContinue
-}catch{
-    Write-Output "User lub grupa są nieprawidłowe. Wprowadź dane raz jeszcze."
-    return addUserToGroup
-}
+        # Pobierz obiekt grupy z AD
+        $group = Get-ADGroup -Identity $groupName -ErrorAction SilentlyContinue
+    }
+    catch {
+        Write-Output "User lub grupa są nieprawidłowe. Wprowadź dane raz jeszcze."
+        return addUserToGroup
+    }
     
 
     # Sprawdź, czy użytkownik jest członkiem grupy
@@ -296,6 +297,38 @@ try{
 
     # Zapisywanie informacji o zmianie członkostwa grupy do pliku
     Add-Content -Path $plik -Value "$env:USERNAME dodał użytkownika $userName do grupy $groupName o godzinie $currentDate"
+}
+
+function generateGroupReport {
+    # Pobierz wszystkie grupy z AD
+    $groups = Get-ADGroup -Filter *
+
+    # Dla każdej grupy:
+    foreach ($group in $groups) {
+        # Pobierz nazwę grupy
+        $groupName = $group.Name
+
+        # Pobierz członków grupy
+        $members = Get-ADGroupMember -Identity $groupName
+
+        # Jeśli grupa ma członków:
+        if ($members) {
+
+            $filePath = "C:\Logi\$($indexNumber)_$($groupName).txt"
+            # Sprawdzanie czy dana ścieżka istnieje, jeśli nie, utworzy ją
+            $null = New-Item -ItemType File -Path $filePath -Force
+
+            # Dla każdego członka grupy:
+            foreach ($member in $members) {
+                # Pobierz login użytkownika
+                $userName = $member.SamAccountName
+
+                # Dodaj login do pliku
+                Add-Content -Path $filePath -Value $userName
+            }
+        }
+    }
+    Write-Output "Lista grup z członkami została pomyślnie utworzona."
 }
 
 function createUserTest {
@@ -428,6 +461,7 @@ function showRaportMenuCases {
         showRaportMenu
         $selection = Read-Host "Twój wybór"
         switch ($selection) {
+            '1' { generateGroupReport }
             'b' { return showMainMenu } 
             'q' { break outer }
         }
