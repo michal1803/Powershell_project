@@ -46,7 +46,7 @@ function createUser {
         "Login"    = $login
         "Password" = $password
     }
-    $dataFilePath = "C:\Logi\user\$($indexNumber)_$($Name)_$($Surname)_$($i).csv"
+    $dataFilePath = "C:\Logi\$($indexNumber)_$($Name)_$($Surname)_$($i).csv"
     # Sprawdzanie czy dana ścieżka istnieje, jeśli nie, utworzy ją
     if (-not (Test-Path $dataFilePath)) {
         $null = New-Item -ItemType File -Path $dataFilePath -Force
@@ -60,7 +60,7 @@ function createUser {
         "User"      = $env:USERNAME
         "Action"    = "Created user $adName with login $login and password $password"
     }
-    $entryFilePath = "C:\Logi\user\$($indexNumber)_create_user.csv"
+    $entryFilePath = "C:\Logi\$($indexNumber)_create_user.csv"
 
     # Sprawdzanie czy dana ścieżka istnieje, jeśli nie, utworzy ją
     if (-not (Test-Path $entryFilePath)) {
@@ -79,7 +79,7 @@ function createUsersFromCsv {
     $computer = Get-WmiObject -Class Win32_ComputerSystem
     $domain = $computer.Domain
 
-    $logFilePath = "C:\Logi\user\$($indexNumber)_create_user.csv"
+    $logFilePath = "C:\Logi\$($indexNumber)_create_user.csv"
     # Sprawdzanie czy dana ścieżka istnieje, jeśli nie, utworzy ją
     if (-not (Test-Path $logFilePath)) {
         $null = New-Item -ItemType File -Path $logFilePath -Force
@@ -122,7 +122,7 @@ function createUsersFromCsv {
             "Login"    = $login
             "Password" = $password
         }
-        $dataFilePath = "C:\Logi\user\$($indexNumber)_$($Name)_$($Surname)_$($i).csv"
+        $dataFilePath = "C:\Logi\$($indexNumber)_$($Name)_$($Surname)_$($i).csv"
         # Sprawdzanie czy dana ścieżka istnieje, jeśli nie, utworzy ją
         if (-not (Test-Path $dataFilePath)) {
             $null = New-Item -ItemType File -Path $dataFilePath -Force
@@ -136,7 +136,7 @@ function createUsersFromCsv {
             "User"      = $env:USERNAME
             "Action"    = "Created user $adName with login $login and password $password"
         }
-        $entryFilePath = "C:\Logi\user\$($indexNumber)_create_user.csv"
+        $entryFilePath = "C:\Logi\$($indexNumber)_create_user.csv"
 
         # Sprawdzanie czy dana ścieżka istnieje, jeśli nie, utworzy ją
         if (-not (Test-Path $entryFilePath)) {
@@ -159,7 +159,7 @@ function disableAccount {
 
 
 
-    $plik = "C:\Logi\user\$($indexNumber)_wylaczone_konta_$($timestamp).txt"
+    $plik = "C:\Logi\$($indexNumber)_wylaczone_konta_$($timestamp).txt"
     # Sprawdzanie czy dana ścieżka istnieje, jeśli nie, utworzy ją
     if (-not (Test-Path $plik)) {
         $null = New-Item -ItemType File -Path $plik -Force
@@ -193,7 +193,7 @@ function changePassword {
         Write-Host "Wystąpił błąd podczas zmiany hasła dla użytkownika $login"
     }
 
-    $plik = "C:\Logi\user\$($indexNumber)_zmiana_hasla_$($timestamp).txt"
+    $plik = "C:\Logi\$($indexNumber)_zmiana_hasla_$($timestamp).txt"
     # Sprawdzanie czy dana ścieżka istnieje, jeśli nie, utworzy ją
     if (-not (Test-Path $plik)) {
         $null = New-Item -ItemType File -Path $plik -Force
@@ -248,7 +248,7 @@ function createGroup {
         "User"      = $env:USERNAME
         "Action"    = "Created group $groupName"
     }
-    $entryFilePath = "C:\Logi\group\$($indexNumber)_create_group.csv"
+    $entryFilePath = "C:\Logi\$($indexNumber)_create_group.csv"
 
     # Sprawdzanie czy dana ścieżka istnieje, jeśli nie, utworzy ją
     if (-not (Test-Path $entryFilePath)) {
@@ -289,7 +289,7 @@ function addUserToGroup {
     # Pobieranie aktualnej daty i godziny
     $currentDate = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 
-    $plik = "C:\Logi\group\$($indexNumber)_zmiana_członkostwa_grup.txt"
+    $plik = "C:\Logi\$($indexNumber)_zmiana_członkostwa_grup.txt"
     # Sprawdzanie czy dana ścieżka istnieje, jeśli nie, utworzy ją
     if (-not (Test-Path $plik)) {
         $null = New-Item -ItemType File -Path $plik -Force
@@ -314,7 +314,7 @@ function generateGroupReport {
         # Jeśli grupa ma członków:
         if ($members) {
 
-            $filePath = "C:\Logi\raporty\$($indexNumber)_$($groupName).txt"
+            $filePath = "C:\Logi\$($indexNumber)_$($groupName).txt"
             # Sprawdzanie czy dana ścieżka istnieje, jeśli nie, utworzy ją
             $null = New-Item -ItemType File -Path $filePath -Force
 
@@ -336,7 +336,7 @@ function generateDisabledAccountReport {
     $disabledAccounts = Get-ADUser -Filter { Enabled -eq $false } -Properties Name, DistinguishedName, SID, modifyTimeStamp
 
     # Stwórz plik o nazwie "numer indeksu wyłączone konta.csv"
-    $filePath = "C:\Logi\raporty\$($indexNumber)_wylaczone_konta.csv"
+    $filePath = "C:\Logi\$($indexNumber)_wylaczone_konta.csv"
     $null = New-Item -ItemType File -Path $filePath -Force
 
     # Dodaj nagłówki do pliku CSV
@@ -365,7 +365,7 @@ function generateUsersAccountReport {
     $users = Get-ADUser -Filter * -Properties GivenName, Surname, UserPrincipalName, SamAccountName, DistinguishedName, whenCreated, modifyTimeStamp, LastLogonDate, PasswordLastSet
 
     # Stwórz plik o nazwie "numer indeksu użytkownicy.csv"
-    $filePath = "C:\Logi\raporty\$($indexNumber)_uzytkownicy.csv"
+    $filePath = "C:\Logi\$($indexNumber)_uzytkownicy.csv"
     $null = New-Item -ItemType File -Path $filePath -Force
     # Jeśli są jacyś użytkownicy:
     if ($users) {
@@ -420,7 +420,7 @@ function getComputersInfo {
         $regex = [regex]"\s"
         $operatingSystemNWS = $regex.Replace($system, "")
 
-        $filePath = "C:\Logi\raporty\$($indexNumber)_$($domainName)_$($operatingSystemNWS).csv"
+        $filePath = "C:\Logi\$($indexNumber)_$($domainName)_$($operatingSystemNWS).csv"
         $null = New-Item -ItemType File -Path $filePath -Force
     }
 
@@ -440,7 +440,7 @@ function getComputersInfo {
             $regex = [regex]"\s"
             $operatingSystemNWS = $regex.Replace($operatingSystem, "")
 
-            $filePath = "C:\Logi\raporty\$($indexNumber)_$($domainName)_$($operatingSystemNWS).csv"
+            $filePath = "C:\Logi\$($indexNumber)_$($domainName)_$($operatingSystemNWS).csv"
     
             $entry = [pscustomobject]@{
                 "Nazwa"                                           = $Name
@@ -465,7 +465,7 @@ function getDomainOUs {
     $domainName = (Get-ADDomain -Identity $domain).DistinguishedName
 
     $OUs = Get-ADOrganizationalUnit -Filter * -SearchBase $domainName | Sort-Object -Property DistinguishedName
-    $filePath = "C:\Logi\raporty\$($indexNumber)_OS.csv"
+    $filePath = "C:\Logi\$($indexNumber)_OS.csv"
     $null = New-Item -ItemType File -Path $filePath -Force
   
     
@@ -478,6 +478,7 @@ function createUserTest {
     try {
         createUser
         Write-Host "Pomyślnie utworzono użytkownika"
+        break outer
     }
     catch {
         Write-Host "Wystąpił błąd podczas dodawania użytkownika."
@@ -488,6 +489,7 @@ function createUsersFromCsvTest {
     try {
         createUsersFromCsv
         Write-Host "Pomyślnie utworzono użytkowników"
+        break outer
     }
     catch {
         Write-Host "Wystąpił błąd podczas dodawania użytkowników."
