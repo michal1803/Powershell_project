@@ -3,7 +3,7 @@
 
 ########-----MENU-----########
 
-$title = "##############-------------AZ1 PROJEKT ZALICZENIOWY POWERSHELL-------------##############"
+$header = "##############---------AZ1 PROJEKT ZALICZENIOWY POWERSHELL---------##############"
 $author = "##############-------------MICHAL WASIK 18852 IZ07TC1-------------##############"
 $indexNumber = "18852"
 
@@ -514,6 +514,9 @@ function showMainMenu {
         [string]$Title = 'MENU GŁÓWNE'
     )
     Clear-Host
+    Write-Host $author
+    Write-Host $header
+    Write-Host 
     Write-Host "================ $Title ================"
     
     Write-Host "1: Obsługa kont użytkowników"
@@ -527,6 +530,9 @@ function showUserMenu {
         [string]$Title = 'Obsługa kont użytkowników'
     )
     Clear-Host
+    Write-Host $author
+    Write-Host $header
+    Write-Host 
     Write-Host "================ $Title ================"
     
     Write-Host "1: Tworzenie konta użytkowanika"
@@ -542,6 +548,9 @@ function showGroupMenu {
         [string]$Title = 'Obsługa kont grup'
     )
     Clear-Host
+    Write-Host $author
+    Write-Host $header
+    Write-Host 
     Write-Host "================ $Title ================"
     
     Write-Host "1: Tworzenie nowych grup"
@@ -555,6 +564,9 @@ function showRaportMenu {
         [string]$Title = 'Raporty'
     )
     Clear-Host
+    Write-Host $author
+    Write-Host $header
+    Write-Host 
     Write-Host "================ $Title ================"
     
     Write-Host "1: Lista grup z członkami"
