@@ -28,6 +28,3 @@ function generateDisabledAccountReport {
     }
     Write-Output "Lista wyłączonych użytkowników została pomyślnie utworzona."
 }
-
-######## NOT DONE
-## nie działa last modfied 
