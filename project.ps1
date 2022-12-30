@@ -204,7 +204,6 @@ function changePassword {
 
 }
 
-$indexNumber = "18852"
 function createGroup {
     param (
         [Parameter(Mandatory = $true)]
@@ -552,7 +551,7 @@ function showGroupMenu {
     Write-Host "================ $Title ================"
     
     Write-Host "1: Tworzenie nowych grup"
-    Write-Host "2: Dodawania użytkowników do grup"
+    Write-Host "2: Dodawanie użytkowników do grup"
     Write-Host "B: Cofnij" 
     Write-Host "Q: Wyjdź"
 }

@@ -1,0 +1,35 @@
+"Imie","Nazwisko","Login (UPN)","Samaccount","Lokalizacja","Data utworzenia","Data ostatniej modyfikacji","Data ostatniego logowania","Data ostatniej zmiany hasla na koncie"
+,,,"Administrator","CN=Administrator,CN=Users,DC=TCOGRUPA2,DC=pl","12/19/2022 10:57:19 AM","12/23/2022 2:51:53 PM","12/19/2022 11:01:41 AM","12/19/2022 10:40:50 AM"
+,,,"Guest","CN=Guest,CN=Users,DC=TCOGRUPA2,DC=pl","12/19/2022 10:57:19 AM","12/19/2022 10:57:19 AM",,
+,,,"krbtgt","CN=krbtgt,CN=Users,DC=TCOGRUPA2,DC=pl","12/19/2022 10:58:17 AM","12/27/2022 1:42:10 PM",,"12/19/2022 10:58:17 AM"
+"tco","grupa2","tcogrupa2@TCOGRUPA2.pl","tcogrupa2","CN=tco grupa2,OU=Użytkownicy,DC=TCOGRUPA2,DC=pl","12/24/2022 3:06:17 AM","12/24/2022 3:06:31 AM","12/24/2022 3:06:31 AM","12/24/2022 3:06:17 AM"
+,,"qwe.qwe@TCOGRUPA2.pl","qwe.qwe","CN=qwe.qwe,CN=Users,DC=TCOGRUPA2,DC=pl","12/28/2022 3:02:47 PM","12/28/2022 3:02:47 PM",,"12/28/2022 3:02:47 PM"
+,,"qwe.qwe1@TCOGRUPA2.pl","qwe.qwe1","CN=qwe qwe 1,CN=Users,DC=TCOGRUPA2,DC=pl","12/28/2022 3:02:50 PM","12/29/2022 11:54:34 AM",,"12/28/2022 3:02:50 PM"
+,,"qwe.qwe2@TCOGRUPA2.pl","qwe.qwe2","CN=qwe qwe 2,CN=Users,DC=TCOGRUPA2,DC=pl","12/28/2022 3:02:56 PM","12/29/2022 11:56:00 AM",,"12/28/2022 3:02:56 PM"
+,,"qwe.qwe3@TCOGRUPA2.pl","qwe.qwe3","CN=qwe qwe 3,CN=Users,DC=TCOGRUPA2,DC=pl","12/28/2022 3:03:39 PM","12/29/2022 11:57:20 AM",,"12/28/2022 3:03:39 PM"
+,,"123.123@TCOGRUPA2.pl","123.123","CN=123.123,CN=Users,DC=TCOGRUPA2,DC=pl","12/28/2022 3:05:24 PM","12/28/2022 3:05:24 PM",,"12/28/2022 3:05:24 PM"
+,,"qwe.qwe4@TCOGRUPA2.pl","qwe.qwe4","CN=qwe qwe 4,CN=Users,DC=TCOGRUPA2,DC=pl","12/28/2022 3:46:48 PM","12/29/2022 11:58:17 AM",,"12/28/2022 3:46:48 PM"
+,,"qwe.qwe5@TCOGRUPA2.pl","qwe.qwe5","CN=qwe qwe 5,CN=Users,DC=TCOGRUPA2,DC=pl","12/29/2022 9:32:47 AM","12/29/2022 9:32:47 AM",,
+,,"asd.dfvc@TCOGRUPA2.pl","asd.dfvc","CN=asd dfvc,CN=Users,DC=TCOGRUPA2,DC=pl","12/29/2022 9:52:09 AM","12/29/2022 9:52:09 AM",,
+,,"weqeqweq.asdxz@TCOGRUPA2.pl","weqeqweq.asdxz","CN=weqeqweq asdxz,CN=Users,DC=TCOGRUPA2,DC=pl","12/29/2022 9:52:44 AM","12/29/2022 9:52:45 AM",,"12/29/2022 9:52:45 AM"
+,,"kda.adsfc@TCOGRUPA2.pl","kda.adsfc","CN=kda adsfc,CN=Users,DC=TCOGRUPA2,DC=pl","12/29/2022 9:55:18 AM","12/29/2022 9:55:18 AM",,"12/29/2022 9:55:18 AM"
+,,"wqsa.xzcsd@TCOGRUPA2.pl","wqsa.xzcsd","CN=wqsa xzcsd,CN=Users,DC=TCOGRUPA2,DC=pl","12/29/2022 10:45:43 AM","12/29/2022 10:45:43 AM",,"12/29/2022 10:45:43 AM"
+,,"bf.hngthn@TCOGRUPA2.pl","bf.hngthn","CN=bf hngthn,CN=Users,DC=TCOGRUPA2,DC=pl","12/29/2022 10:46:12 AM","12/29/2022 10:46:12 AM",,"12/29/2022 10:46:12 AM"
+,,"xcv.sdv@TCOGRUPA2.pl","xcv.sdv","CN=xcv sdv,CN=Users,DC=TCOGRUPA2,DC=pl","12/29/2022 10:47:55 AM","12/29/2022 10:47:55 AM",,"12/29/2022 10:47:55 AM"
+,,"xcv.sdv1@TCOGRUPA2.pl","xcv.sdv1","CN=xcv sdv 1,CN=Users,DC=TCOGRUPA2,DC=pl","12/29/2022 10:48:35 AM","12/29/2022 10:48:35 AM",,"12/29/2022 10:48:35 AM"
+,,"xcv.sdv2@TCOGRUPA2.pl","xcv.sdv2","CN=xcv sdv 2,CN=Users,DC=TCOGRUPA2,DC=pl","12/29/2022 10:48:53 AM","12/29/2022 10:48:53 AM",,
+,,"xcv.sdv3@TCOGRUPA2.pl","xcv.sdv3","CN=xcv sdv 3,CN=Users,DC=TCOGRUPA2,DC=pl","12/29/2022 10:50:00 AM","12/29/2022 10:50:00 AM",,"12/29/2022 10:50:00 AM"
+,,"xcv.sdv4@TCOGRUPA2.pl","xcv.sdv4","CN=xcv sdv 4,CN=Users,DC=TCOGRUPA2,DC=pl","12/29/2022 10:50:32 AM","12/29/2022 10:50:32 AM",,"12/29/2022 10:50:32 AM"
+,,"xcv.sdv5@TCOGRUPA2.pl","xcv.sdv5","CN=xcv sdv 5,CN=Users,DC=TCOGRUPA2,DC=pl","12/29/2022 10:51:55 AM","12/29/2022 10:51:55 AM",,"12/29/2022 10:51:55 AM"
+,,"xcv.sdv6@TCOGRUPA2.pl","xcv.sdv6","CN=xcv sdv 6,CN=Users,DC=TCOGRUPA2,DC=pl","12/29/2022 10:52:58 AM","12/29/2022 10:52:58 AM",,"12/29/2022 10:52:58 AM"
+,,"xcv.sdv7@TCOGRUPA2.pl","xcv.sdv7","CN=xcv sdv 7,CN=Users,DC=TCOGRUPA2,DC=pl","12/29/2022 11:00:27 AM","12/29/2022 11:00:27 AM",,"12/29/2022 11:00:27 AM"
+,,"xcv.sdv8@TCOGRUPA2.pl","xcv.sdv8","CN=xcv sdv 8,CN=Users,DC=TCOGRUPA2,DC=pl","12/29/2022 11:04:14 AM","12/29/2022 11:04:14 AM",,
+,,"xcv.sdv9@TCOGRUPA2.pl","xcv.sdv9","CN=xcv sdv 9,CN=Users,DC=TCOGRUPA2,DC=pl","12/29/2022 11:05:00 AM","12/29/2022 11:05:00 AM",,"12/29/2022 11:05:00 AM"
+,,"xcv.sdv10@TCOGRUPA2.pl","xcv.sdv10","CN=xcv sdv 10,CN=Users,DC=TCOGRUPA2,DC=pl","12/29/2022 11:06:04 AM","12/29/2022 11:06:04 AM",,"12/29/2022 11:06:04 AM"
+,,"xcv.sdv11@TCOGRUPA2.pl","xcv.sdv11","CN=xcv sdv 11,CN=Users,DC=TCOGRUPA2,DC=pl","12/29/2022 11:06:40 AM","12/29/2022 11:06:40 AM",,"12/29/2022 11:06:40 AM"
+,,"xcv.sdv12@TCOGRUPA2.pl","xcv.sdv12","CN=xcv sdv 12,CN=Users,DC=TCOGRUPA2,DC=pl","12/29/2022 11:26:38 AM","12/29/2022 11:26:38 AM",,"12/29/2022 11:26:38 AM"
+,,"xcv.sdv13@TCOGRUPA2.pl","xcv.sdv13","CN=xcv sdv 13,CN=Users,DC=TCOGRUPA2,DC=pl","12/29/2022 11:33:48 AM","12/29/2022 11:33:48 AM",,"12/29/2022 11:33:48 AM"
+,"wasik","michal.wasik@TCOGRUPA2.pl","michal.wasik","CN=michal wasik,CN=Users,DC=TCOGRUPA2,DC=pl","12/29/2022 11:37:45 AM","12/29/2022 12:41:17 PM",,"12/29/2022 12:41:17 PM"
+"nosiema","eloelo","nosiema.eloelo@TCOGRUPA2.pl","nosiema.eloelo","CN=nosiema eloelo,CN=Users,DC=TCOGRUPA2,DC=pl","12/30/2022 3:17:28 AM","12/30/2022 3:17:28 AM",,
+"lala","alal","lala.alal@TCOGRUPA2.pl","lala.alal","CN=lala alal,CN=Users,DC=TCOGRUPA2,DC=pl","12/30/2022 3:19:29 AM","12/30/2022 3:19:29 AM",,"12/30/2022 3:19:29 AM"
+"dscx","dsa ","dscx.dsa @TCOGRUPA2.pl","dscx.dsa ","CN=dscx dsa\ ,CN=Users,DC=TCOGRUPA2,DC=pl","12/30/2022 9:28:46 AM","12/30/2022 9:28:46 AM",,"12/30/2022 9:28:46 AM"
